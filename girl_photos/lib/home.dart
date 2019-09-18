@@ -28,7 +28,9 @@ class _HomePageState extends State<HomePage> {
       _sourceData = [];
       print(data);
     }
-    _sourceData.addAll(data);
+    setState(() {
+      _sourceData.addAll(data);
+    });
   }
 
   //  加载更多
@@ -56,12 +58,7 @@ class _HomePageState extends State<HomePage> {
         title: Text('首页'),
       ),
       body: RefreshIndicator(
-          onRefresh: (){
-            setState(() {
-              _index = 1;
-              getHomeList();
-            });
-          },
+          onRefresh: () {},
           child: new StaggeredGridView.countBuilder(
             controller: _controller,
             mainAxisSpacing: 8.0,
@@ -117,10 +114,9 @@ class PhotoView extends StatelessWidget {
           ],
         ),
       ),
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => DetailsView(model)
-                  ));
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => DetailsView(model)));
       },
     );
   }

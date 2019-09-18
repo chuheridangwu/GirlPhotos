@@ -67,6 +67,24 @@ class NetWorkTool {
       print("获取排行榜网络错误$e");
     }
   }
+
+  // 用户详情
+  Future<DetailModel> getUserInfo(String girlId, int index) async {
+    Future<String> boseURL = getBaseIP();
+    try {
+      Response response = await Dio(BaseOptions(headers: {
+        "Host": "apiv2.prettybeauty.biz",
+        "User-Agent": "Beauty/1.10 (iPhone; iOS 12.1.2; Scale/2.00)"
+      })).get(
+          'http://103.85.22.147/girl/detail?app= Fantastic&girl_id=$girlId&it=$timeMills&pageIndex=$index&pageSize=10&version=1.8');
+      if (response.statusCode == 200) {
+        return DetailModel.fromJson(response.data["data"]["girl"]);
+      }
+      return DetailModel([], "", "");
+    } catch (e) {
+      print("获取排行榜网络错误$e");
+    }
+  }
 }
 
 // 数据模型
