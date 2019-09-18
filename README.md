@@ -6,7 +6,7 @@
 
 每个接口需要传对应的headers
 Host:apiv2.prettybeauty.biz
-User-Argent : Beauty/1.10 (iPhone; iOS 12.1.2; Scale/2.00)
+User-Agent : Beauty/1.10 (iPhone; iOS 12.1.2; Scale/2.00)
 
 ## 获取服务器ip
 接口： http://119.29.29.29/d?dn=apiv2.prettybeauty.biz
@@ -24,4 +24,4 @@ User-Argent : Beauty/1.10 (iPhone; iOS 12.1.2; Scale/2.00)
   示例接口: http://103.85.22.147/album/all?app=Fantastic&it=1545917841&pageIndex=1&pageSize=10&styleId=0&type=1&version=1.8
   
 ## 人气榜
-  示例接口: http://103.85.22.147/girl/all?app=Rosi&it=1552837980&pageIndex=1&pageSize=10&version=1.10 
+  示例接口: http://103.85.22.147/girl/all?app=Fantastic&it=1552837980&pageIndex=1&pageSize=10&version=1.8 
