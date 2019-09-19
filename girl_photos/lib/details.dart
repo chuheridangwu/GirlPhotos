@@ -65,9 +65,9 @@ class _DetailsViewState extends State<DetailsView> {
         },
         body: StaggeredGridView.countBuilder(
           crossAxisCount: 4,
-          mainAxisSpacing: 8.0,
-          crossAxisSpacing: 8.0,
-          padding: EdgeInsets.all(8),
+          mainAxisSpacing: 4.0,
+          crossAxisSpacing: 4.0,
+          padding: EdgeInsets.all(4.0),
           itemCount: _detailModel.albums.length,
           itemBuilder: (context, index) {
             return PhotoView(_detailModel.albums[index], widget.model);

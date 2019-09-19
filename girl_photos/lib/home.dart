@@ -26,7 +26,6 @@ class _HomePageState extends State<HomePage> {
     List data = await NetWorkTool().getHomeList(_index);
     if (_index == 1) {
       _sourceData = [];
-      print(data);
     }
     setState(() {
       _sourceData.addAll(data);
@@ -54,16 +53,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('首页'),
-      ),
       body: RefreshIndicator(
           onRefresh: () {},
           child: new StaggeredGridView.countBuilder(
             controller: _controller,
-            mainAxisSpacing: 8.0,
-            crossAxisSpacing: 8.0,
-            padding: EdgeInsets.all(8),
+            mainAxisSpacing: 4.0,
+            crossAxisSpacing: 4.0,
+            padding: EdgeInsets.all(4.0),
             crossAxisCount: 4,
             itemCount: _sourceData.length,
             itemBuilder: (BuildContext context, int index) {

@@ -12,6 +12,7 @@ class NetWorkTool {
     } catch (e) {
       print("获取基础网络错误: $e");
     }
+    return "";
   }
 
   // 热门
@@ -28,27 +29,32 @@ class NetWorkTool {
           return ListModel.fromJson(item);
         }).toList();
       }
-      return [];
     } catch (e) {
       print("获取首页网络错误$e");
     }
+    return [];
   }
 
   VoidCallback back;
 
   // 最新
-  Future getLatestList(int index) async {
+  Future<List> getLatestList(int index) async {
     Future<String> boseURL = getBaseIP();
     try {
       Response response = await Dio(BaseOptions(headers: {
         "Host": "apiv2.prettybeauty.biz",
         "User-Agent": "Beauty/1.10 (iPhone; iOS 12.1.2; Scale/2.00)"
       })).get(
-          'http://103.85.22.147/album/all?app=Fantastic&it=$timeMills&pageIndex=$index&pageSize=10&styleId=0&type=1&version=1.8');
-      return response.data;
+          'http://103.85.22.147/album/all?app=Fantastic&it=$timeMills&pageIndex=$index&pageSize=10&styleId=1&type=1&version=1.8');
+      if (response.statusCode == 200) {
+        return response.data["data"]["albums"].map((item) {
+          return ListModel.fromJson(item);
+        }).toList();
+      }
     } catch (e) {
       print("获取最新接口网络错误$e");
     }
+    return [];
   }
 
   // 排行
@@ -80,10 +86,10 @@ class NetWorkTool {
       if (response.statusCode == 200) {
         return DetailModel.fromJson(response.data["data"]["girl"]);
       }
-      return DetailModel([], "", "");
     } catch (e) {
       print("获取排行榜网络错误$e");
     }
+    return DetailModel([], "", "");
   }
 }
 

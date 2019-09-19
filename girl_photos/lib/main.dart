@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:girl_photos/home.dart';
+import 'package:girl_photos/latest.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +14,31 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: DefaultTabController(
+        initialIndex: 0,
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            title: TabBar(
+              indicatorSize: TabBarIndicatorSize.label,
+              tabs: <Widget>[
+                Tab(
+                  text: 'home',
+                ),
+                Tab(
+                  text: 'latest',
+                )
+              ],
+            ),
+          ),
+          body: TabBarView(
+            children: <Widget>[
+              HomePage(),
+              LatestView()
+            ],
+          ),
+        ),
+      )
     );
   }
 }
