@@ -26,10 +26,10 @@ User-Agent : Beauty/1.10 (iPhone; iOS 12.1.2; Scale/2.00)
 ## 人气榜
   示例接口: http://103.85.22.147/girl/all?app=Fantastic&it=1552837980&pageIndex=1&pageSize=10&version=1.8 
   
-  ![hot](https://github.com/chuheridangwu/GirlPhotos/raw/master/hot.PNG=200x)
-  ![latest](https://github.com/chuheridangwu/GirlPhotos/raw/master/latest.PNG=200x)
-  ![ranking](https://github.com/chuheridangwu/GirlPhotos/raw/master/ranking.PNG=200x)
-  ![userinfo](https://github.com/chuheridangwu/GirlPhotos/raw/master/userinfo.PNG=200x)
+  ![hot](https://github.com/chuheridangwu/GirlPhotos/raw/master/hot.PNG)
+  ![latest](https://github.com/chuheridangwu/GirlPhotos/raw/master/latest.PNG)
+  ![ranking](https://github.com/chuheridangwu/GirlPhotos/raw/master/ranking.PNG)
+  ![userinfo](https://github.com/chuheridangwu/GirlPhotos/raw/master/userinfo.PNG)
   
 # 项目中遇到的问题
 
@@ -47,13 +47,6 @@ FadeInImage.memoryNetwork(
 ## README.md 添加图片
  
 GitHub上面的图片组成路径 github.com/账户名/仓库名/raw/分支名称/图片文件夹(直接放在根目录可忽略)/图片名称 
-
-your_name           -- 你的帐号
-your_repository 		-- 你的仓库名
-images_folder     	-- 你存放图片的文件夹，如果是直接放在仓库根目录下，可以忽略
-img.jpg             -- 你的图片名
-
-然后在 README.md 里添加
 
 ```
 例如我的账号是`chuheridangwu` 仓库为`GirlPhotos`  分支`master`  图片名称`hot.PNG`
