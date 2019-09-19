@@ -29,7 +29,9 @@ class _PictureListViewState extends State<PictureListView> {
           return Stack(
             children: <Widget>[
               Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.white,
+                ),
               ),
               Center(
                 child: FadeInImage.memoryNetwork(
