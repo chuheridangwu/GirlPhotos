@@ -1,5 +1,5 @@
 # GirlPhotos
-图片
+美女图片
 
 # 接口文档
 打开app之前需要获取对应的服务器IP地址，首先获取ip地址，根据接口返回的ip地址，将下面的接口换成对应的ip
@@ -25,19 +25,36 @@ User-Agent : Beauty/1.10 (iPhone; iOS 12.1.2; Scale/2.00)
   
 ## 人气榜
   示例接口: http://103.85.22.147/girl/all?app=Fantastic&it=1552837980&pageIndex=1&pageSize=10&version=1.8 
-  ![hot](/hot.PNG)
-  ![latest](/latest.PNG)
-  ![ranking](/ranking.PNG)
-  ![userinfo](/userinfo.PNG)
+  ![hot](https://github.com/chuheridangwu/GirlPhotos/raw/master/hot.PNG)
+  ![latest](https://github.com/chuheridangwu/GirlPhotos/raw/master/latest.PNG)
+  ![ranking](https://github.com/chuheridangwu/GirlPhotos/raw/master/ranking.PNG)
+  ![userinfo](https://github.com/chuheridangwu/GirlPhotos/raw/master/userinfo.PNG)
   
 # 项目中遇到的问题
 
 ## 使用占位图片
 
 使用`FadeInImage`部件, kTransparentImage是一个图名图片，导入`transparent_image`,自带渐变效果
+
 ```
 FadeInImage.memoryNetwork(
   placeholder: kTransparentImage,
   image: 'https://picsum.photos/250?image=9',
 );
+```
+
+## README.md 添加图片
+ 
+GitHub上面的图片组成路径 github.com/账户名/仓库名/raw/master/图片文件夹(直接放在根目录可忽略)/图片名称 
+
+your_name           -- 你的帐号
+your_repository 		-- 你的仓库名
+images_folder     	-- 你存放图片的文件夹，如果是直接放在仓库根目录下，可以忽略
+img.jpg             -- 你的图片名
+
+然后在 README.md 里添加
+
+```
+例如我的账号是`chuheridangwu` 仓库为`GirlPhotos`  图片名称`hot.PNG`
+![image](https://github.com/chuheridangwu/GirlPhotos/raw/master/hot.PNG)
 ```
