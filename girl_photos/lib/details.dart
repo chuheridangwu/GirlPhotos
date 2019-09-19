@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:girl_photos/network_tool.dart';
+import 'package:girl_photos/picture_list.dart';
 
+// 个人信息中心
 class DetailsView extends StatefulWidget {
-  ListModel model;
+  final ListModel model;
   DetailsView(this.model);
 
   @override
@@ -11,7 +13,7 @@ class DetailsView extends StatefulWidget {
 }
 
 class _DetailsViewState extends State<DetailsView> {
-  DetailModel _detailModel = DetailModel([],"","");
+  DetailModel _detailModel = DetailModel([], "", "");
   int _index = 1;
   ScrollController _controller = ScrollController();
 
@@ -24,12 +26,12 @@ class _DetailsViewState extends State<DetailsView> {
   }
 
   void getUserInfo() async {
-    DetailModel m =  DetailModel([],"","");
+    DetailModel m = DetailModel([], "", "");
     m = await NetWorkTool().getUserInfo(widget.model.girlId, _index);
     setState(() {
-      if (_index == 1){
+      if (_index == 1) {
         _detailModel = m;
-      }else{
+      } else {
         _detailModel.albums.addAll(m.albums);
       }
     });
@@ -48,29 +50,39 @@ class _DetailsViewState extends State<DetailsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("${widget.model.girl.name}"),
-      ),
-      body: StaggeredGridView.countBuilder(
+      body: NestedScrollView(
         controller: _controller,
-        crossAxisCount: 4,
-        mainAxisSpacing: 8.0,
-        crossAxisSpacing: 8.0,
-        padding: EdgeInsets.all(8),
-        itemCount: _detailModel.albums.length,
-        itemBuilder: (context, index) {
-          return PhotoView(_detailModel.albums[index],widget.model);
+        headerSliverBuilder: (context, boxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              title: Text(widget.model.content),
+              expandedHeight: 200.0,
+
+              flexibleSpace: FlexibleSpaceBar(
+                background: Image.network(widget.model.girl.avatar, fit: BoxFit.fill)),
+              ),
+          ];
         },
-        staggeredTileBuilder: (index) => StaggeredTile.fit(2),
+        body: StaggeredGridView.countBuilder(
+          crossAxisCount: 4,
+          mainAxisSpacing: 8.0,
+          crossAxisSpacing: 8.0,
+          padding: EdgeInsets.all(8),
+          itemCount: _detailModel.albums.length,
+          itemBuilder: (context, index) {
+            return PhotoView(_detailModel.albums[index], widget.model);
+          },
+          staggeredTileBuilder: (index) => StaggeredTile.fit(2),
+        ),
       ),
     );
   }
 }
 
 class PhotoView extends StatelessWidget {
-  ListModel model; // 详情模型
-  ListModel topModel; //首页的模型
-  PhotoView(this.model,this.topModel);
+  final ListModel model; // 详情模型
+  final ListModel topModel; //首页的模型
+  PhotoView(this.model, this.topModel);
 
   @override
   Widget build(BuildContext context) {
@@ -78,9 +90,16 @@ class PhotoView extends StatelessWidget {
       child: Card(
         child: Column(
           children: <Widget>[
-            Image.network(
-              "${model.photos[0].url}",
-              fit: BoxFit.cover,
+            GestureDetector(
+              child: Image.network(
+                "${model.photos[0].url}",
+                fit: BoxFit.cover,
+              ),
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                  return PictureListView(model);
+                }));
+              },
             ),
             SizedBox(
               height: 3.0,
@@ -109,7 +128,7 @@ class PhotoView extends StatelessWidget {
       ),
       onTap: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => DetailsView(model)));
+            MaterialPageRoute(builder: (context) => DetailsView(topModel)));
       },
     );
   }

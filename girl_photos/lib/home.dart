@@ -1,10 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:girl_photos/details.dart';
 import 'package:girl_photos/network_tool.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:girl_photos/picture_list.dart';
 
+// 首页
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 class PhotoView extends StatelessWidget {
-  ListModel model;
+  final ListModel model;
   PhotoView(this.model);
 
   @override
@@ -85,9 +85,16 @@ class PhotoView extends StatelessWidget {
       child: Card(
         child: Column(
           children: <Widget>[
-            Image.network(
-              "${model.photos[0].url}",
-              fit: BoxFit.cover,
+            GestureDetector(
+              child: Image.network(
+                "${model.photos[0].url}",
+                fit: BoxFit.cover,
+              ),
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                  return PictureListView(model);
+                }));
+              },
             ),
             SizedBox(
               height: 3.0,
