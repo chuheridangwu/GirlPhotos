@@ -25,10 +25,19 @@ class _PictureListViewState extends State<PictureListView> {
       body: PageView.builder(
         controller: _pageController,
         itemCount: widget.model.photos.length,
-        itemBuilder: (context,index){
-          return FadeInImage.memoryNetwork(
-            placeholder: kTransparentImage,
-            image: widget.model.photos[index].url,
+        itemBuilder: (context, index) {
+          return Stack(
+            children: <Widget>[
+              Center(
+                child: CircularProgressIndicator(),
+              ),
+              Center(
+                child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: widget.model.photos[index].url,
+                ),
+              )
+            ],
           );
         },
       ),
