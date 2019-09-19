@@ -3,6 +3,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:girl_photos/details.dart';
 import 'package:girl_photos/network_tool.dart';
 import 'package:girl_photos/picture_list.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class LatestView extends StatefulWidget {
   @override
@@ -23,11 +24,10 @@ class _LatestViewState extends State<LatestView> {
   // 获取最新接口
   void getLatestData() async {
     List data = await NetWorkTool().getLatestList(_index);
-    if (_index == 1) {
-      _dataSource = [];
-    }
-    print(data);
     setState(() {
+      if (_index == 1) {
+        _dataSource = [];
+      }
       _dataSource.addAll(data);
     });
   }
@@ -72,9 +72,9 @@ class PhotoView extends StatelessWidget {
         child: Column(
           children: <Widget>[
             GestureDetector(
-              child: Image.network(
-                "${model.photos[0].url}",
-                fit: BoxFit.cover,
+              child: FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
+                image: model.photos[0].url,
               ),
               onTap: () {
                 Navigator.of(context)

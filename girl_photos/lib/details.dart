@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:girl_photos/network_tool.dart';
 import 'package:girl_photos/picture_list.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 // 个人信息中心
 class DetailsView extends StatefulWidget {
@@ -20,7 +21,7 @@ class _DetailsViewState extends State<DetailsView> {
   @override
   void initState() {
     super.initState();
-    print(widget.model.content);
+    print(widget.model.girl);
     getUserInfo();
     _controller.addListener(moreListData);
   }
@@ -91,9 +92,9 @@ class PhotoView extends StatelessWidget {
         child: Column(
           children: <Widget>[
             GestureDetector(
-              child: Image.network(
-                "${model.photos[0].url}",
-                fit: BoxFit.cover,
+              child: FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
+                image: "${model.photos[0].url}",
               ),
               onTap: (){
                 Navigator.of(context).push(MaterialPageRoute(builder: (context){

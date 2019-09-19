@@ -58,20 +58,21 @@ class NetWorkTool {
   }
 
   // 排行
-  Future getRankingList() async {
+  Future<List> getRankingList(int index) async {
     Future<String> boseURL = getBaseIP();
     try {
       Response response = await Dio(BaseOptions(headers: {
         "Host": "apiv2.prettybeauty.biz",
         "User-Agent": "Beauty/1.10 (iPhone; iOS 12.1.2; Scale/2.00)"
       })).get(
-          'http://103.85.22.147/girl/all?app=Fantastic&it=$timeMills&pageIndex=1&pageSize=10&version=1.8');
-      print(response.data);
-      print(response.statusCode);
-      return response.data;
+          'http://103.85.22.147/girl/all?app=Fantastic&it=$timeMills&pageIndex=$index&pageSize=20&version=1.8');
+      return response.data["data"]["girls"].map((item){
+        return Girl.fromJson(item);
+      }).toList();
     } catch (e) {
       print("获取排行榜网络错误$e");
     }
+    return [];
   }
 
   // 用户详情
@@ -87,7 +88,7 @@ class NetWorkTool {
         return DetailModel.fromJson(response.data["data"]["girl"]);
       }
     } catch (e) {
-      print("获取排行榜网络错误$e");
+      print("获取用户详情网络错误$e");
     }
     return DetailModel([], "", "");
   }
@@ -137,14 +138,16 @@ class Girl {
   String name;
   String avatar;
   String likeCount;
+  int albumsCount;
 
-  Girl(this.avatar, this.id, this.likeCount, this.name);
+  Girl(this.avatar, this.id, this.likeCount, this.name,this.albumsCount);
 
   Girl.fromJson(Map json)
       : name = json["name"],
         id = json["id"],
         likeCount = json["likeCount"],
-        avatar = json["avatar"];
+        avatar = json["avatar"],
+        albumsCount = json["albumsCount"];
 }
 
 // 图片

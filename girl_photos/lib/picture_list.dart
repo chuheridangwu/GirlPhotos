@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'network_tool.dart';
 
 //  图片浏览
@@ -25,9 +26,10 @@ class _PictureListViewState extends State<PictureListView> {
         controller: _pageController,
         itemCount: widget.model.photos.length,
         itemBuilder: (context,index){
-          return Image.network(
-                widget.model.photos[index].url,
-              );
+          return FadeInImage.memoryNetwork(
+            placeholder: kTransparentImage,
+            image: widget.model.photos[index].url,
+          );
         },
       ),
     );

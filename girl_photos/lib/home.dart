@@ -3,6 +3,7 @@ import 'package:girl_photos/details.dart';
 import 'package:girl_photos/network_tool.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:girl_photos/picture_list.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 // 首页
 class HomePage extends StatefulWidget {
@@ -24,10 +25,10 @@ class _HomePageState extends State<HomePage> {
 
   void getHomeList() async {
     List data = await NetWorkTool().getHomeList(_index);
-    if (_index == 1) {
-      _sourceData = [];
-    }
     setState(() {
+      if (_index == 1) {
+        _sourceData = [];
+      }
       _sourceData.addAll(data);
     });
   }
@@ -43,18 +44,19 @@ class _HomePageState extends State<HomePage> {
   }
 
   // 上拉刷新
-  void _handlerRefresh() {
+  Future<void> handlerRefresh() {
     setState(() {
       _index = 1;
       getHomeList();
     });
+    return Future((){});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: RefreshIndicator(
-          onRefresh: () {},
+          onRefresh: handlerRefresh,
           child: new StaggeredGridView.countBuilder(
             controller: _controller,
             mainAxisSpacing: 4.0,
@@ -82,12 +84,13 @@ class PhotoView extends StatelessWidget {
         child: Column(
           children: <Widget>[
             GestureDetector(
-              child: Image.network(
-                "${model.photos[0].url}",
-                fit: BoxFit.cover,
+              child: FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
+                image: model.photos[0].url,
               ),
-              onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context){
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return PictureListView(model);
                 }));
               },
