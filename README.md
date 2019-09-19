@@ -26,7 +26,8 @@ User-Agent : Beauty/1.10 (iPhone; iOS 12.1.2; Scale/2.00)
 ## 人气榜
   示例接口: http://103.85.22.147/girl/all?app=Fantastic&it=1552837980&pageIndex=1&pageSize=10&version=1.8 
   
-![hot](https://github.com/chuheridangwu/GirlPhotos/raw/master/hot.PNG){: width="100px" height="100px"}  ![latest](https://github.com/chuheridangwu/GirlPhotos/raw/master/latest.PNG){: width="100px" height="100px"}  ![ranking](https://github.com/chuheridangwu/GirlPhotos/raw/master/ranking.PNG){: width="100px" height="100px"}  ![userinfo](https://github.com/chuheridangwu/GirlPhotos/raw/master/userinfo.PNG){: width="100px" height="100px"}
+ <img src="https://github.com/chuheridangwu/GirlPhotos/raw/master/hot.PNG" height="150px" width="90px" > <img src="https://github.com/chuheridangwu/GirlPhotos/raw/master/latest.PNG" height="150px" width="90px" >
+ <img src="https://github.com/chuheridangwu/GirlPhotos/raw/master/ranking.PNG" height="150px" width="90px" > <img src="https://github.com/chuheridangwu/GirlPhotos/raw/master/userinfo.PNG" height="150px" width="90px" > 
   
 # 项目中遇到的问题
 
