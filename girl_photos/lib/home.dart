@@ -23,6 +23,12 @@ class _HomePageState extends State<HomePage> {
     _controller.addListener(moreListData);
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   void getHomeList() async {
     List data = await NetWorkTool().getHomeList(_index);
     setState(() {
@@ -49,7 +55,7 @@ class _HomePageState extends State<HomePage> {
       _index = 1;
       getHomeList();
     });
-    return Future((){});
+    return Future(() {});
   }
 
   @override

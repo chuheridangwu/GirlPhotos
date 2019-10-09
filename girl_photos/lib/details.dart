@@ -26,6 +26,12 @@ class _DetailsViewState extends State<DetailsView> {
     _controller.addListener(moreListData);
   }
 
+   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   void getUserInfo() async {
     DetailModel m = DetailModel([], "", "");
     m = await NetWorkTool().getUserInfo(widget.model.girlId, _index);

@@ -17,8 +17,14 @@ class _LatestViewState extends State<LatestView> {
   @override
   void initState() {
     super.initState();
-    getLatestData();
+    // getLatestData();
     _controller.addListener(moreDataSource);
+  }
+
+   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   // 获取最新接口
